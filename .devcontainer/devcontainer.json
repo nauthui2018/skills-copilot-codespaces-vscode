@@ -1,11 +1,39 @@
 {
     // Name this configuration
     "name": "Codespace for Skills!",
+    
+    // Use Node.js base image
+    "image": "mcr.microsoft.com/devcontainers/javascript-node:18",
+    
+    // Features to add to the dev container
+    "features": {
+        "ghcr.io/devcontainers/features/git:1": {},
+        "ghcr.io/devcontainers/features/github-cli:1": {}
+    },
+    
+    // Configure tool-specific properties
     "customizations": {
         "vscode": {
             "extensions": [
-                "GitHub.copilot"
-            ]
+                "GitHub.copilot",
+                "GitHub.copilot-chat",
+                "ms-vscode.vscode-json",
+                "bradlc.vscode-tailwindcss",
+                "esbenp.prettier-vscode"
+            ],
+            "settings": {
+                "editor.formatOnSave": true,
+                "editor.defaultFormatter": "esbenp.prettier-vscode"
+            }
         }
-    }
+    },
+    
+    // Forward ports for web server
+    "forwardPorts": [3000, 8000, 8080],
+    
+    // Use 'postCreateCommand' to run commands after the container is created
+    "postCreateCommand": "npm install",
+    
+    // Set the default user
+    "remoteUser": "node"
 }
